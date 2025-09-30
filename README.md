@@ -61,32 +61,24 @@ Access dashboard: http://localhost:15672
 Username/password: guest / guest
 
 2️⃣ Run NotificationService
-bash
-Copy code
+
 cd NotificationService
 dotnet run
 Expected output:
 
-vbnet
-Copy code
 NotificationService listening for orders. Press Enter to exit.
 It is now listening for orders from RabbitMQ.
 
 3️⃣ Run OrderService
-bash
-Copy code
+
 cd OrderService
 dotnet run
 Expected output:
 
-css
-Copy code
 Orders placed and published to RabbitMQ.
 4️⃣ Verify End-to-End
 NotificationService console prints:
 
-mathematica
-Copy code
 [NotificationService] Order received: Id=1, Product=Laptop
 [NotificationService] Order received: Id=2, Product=Phone
 RabbitMQ dashboard → Queues → order-queue → see messages.
