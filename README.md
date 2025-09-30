@@ -33,9 +33,6 @@ Solution/
 │ └─ OrderConsumer.cs
 └─ Program.cs
 
-yaml
-Copy code
-
 ---
 
 ## Prerequisites
