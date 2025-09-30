@@ -33,6 +33,8 @@ Solution/
 │ └─ OrderConsumer.cs
 └─ Program.cs
 
+yaml
+Copy code
 
 ---
 
@@ -54,20 +56,46 @@ docker run -d `
   -p 5672:5672 `
   -p 15672:15672 `
   rabbitmq:3-management
-
 Access dashboard: http://localhost:15672
+
 Username/password: guest / guest
 
-2️⃣ Run OrderService
-cd OrderService
-dotnet run
-
-3️⃣
-Run NotificationService
+2️⃣ Run NotificationService
+bash
+Copy code
 cd NotificationService
 dotnet run
-
 Expected output:
+
+vbnet
+Copy code
+NotificationService listening for orders. Press Enter to exit.
+It is now listening for orders from RabbitMQ.
+
+3️⃣ Run OrderService
+bash
+Copy code
+cd OrderService
+dotnet run
+Expected output:
+
+css
+Copy code
+Orders placed and published to RabbitMQ.
+4️⃣ Verify End-to-End
+NotificationService console prints:
+
+mathematica
+Copy code
 [NotificationService] Order received: Id=1, Product=Laptop
 [NotificationService] Order received: Id=2, Product=Phone
+RabbitMQ dashboard → Queues → order-queue → see messages.
 
+5️⃣ Key Points
+Shared.Contracts ensures all microservices use the same message type.
+
+MediatR handles CQRS commands within OrderService.
+
+MassTransit handles message publishing and consuming via RabbitMQ.
+
+Microservices are fully decoupled — they communicate only via shared messages.
